@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Banking Homepage";
+}
+
+<div class="jumbotron">
+    <h1>Welcome to Our Banking Platform</h1>
+    <p class="lead">Manage your finances securely and conveniently with our comprehensive banking services.</p>
+
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Account Overview</h2>
+        <p>View your account balances, transaction history, and manage your accounts.</p>
+        <a href="@Url.Action("GetAll", "UserAccount")" class="btn btn-primary">Go to Overview</a>
+
+    </div>
+    <div class="col-md-4">
+        <h2>Funds Transfer</h2>
+        <p>Transfer money between your accounts or to other beneficiaries securely and easily.</p>
+        <a href="@Url.Action("Transfer", "UserAccount")" class="btn btn-primary">Go to Transfer</a>
+
+    </div>
+    <div class="col-md-4">
+        <h2>Payments</h2>
+        <p>Make utility bill payments and more with our online payment service.</p>
+        <a href="@Url.Action("PayUtilityBill", "UserAccount")" class="btn btn-primary">Go to Payments</a>
+    </div>
+</div>

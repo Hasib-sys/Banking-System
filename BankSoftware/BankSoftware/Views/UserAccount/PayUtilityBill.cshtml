@@ -1,0 +1,67 @@
+﻿@model BankSoftware.Models.UserAccountModel.UtilityBillPaymentModel
+
+@{
+    ViewBag.Title = "Pay Utility Bill";
+}
+
+<div class="container">
+    <h2>Pay Utility Bill</h2>
+
+    @using (Html.BeginForm("PayUtilityBill", "UserAccount", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AccountNumber, "Account Number", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.AccountNumber, new { @class = "form-control", placeholder = "Enter Account Number" })
+                @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        /*
+               <div class="form-group">
+                   @Html.LabelFor(model => model.BillType, "Bill Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                   <div class="col-md-10">
+                       @Html.TextBoxFor(model => model.BillType, new { @class = "form-control", placeholder = "Enter Bill Type" })
+                       @Html.ValidationMessageFor(model => model.BillType, "", new { @class = "text-danger" })
+                   </div>
+               </div>
+         */
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BillType, "Bill Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.BillType, Model.BillTypeList, "Select Bill Type", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BillType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UtilityUserID, "Utility User ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.UtilityUserID, new { @class = "form-control", placeholder = "Enter Utility User ID" })
+                @Html.ValidationMessageFor(model => model.UtilityUserID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BillAmount, "Bill Amount", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.BillAmount, new { @class = "form-control", placeholder = "Enter Bill Amount" })
+
+                @Html.ValidationMessageFor(model => model.BillAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-primary">Pay Bill</button>
+            </div>
+        </div>
+    }
+</div>

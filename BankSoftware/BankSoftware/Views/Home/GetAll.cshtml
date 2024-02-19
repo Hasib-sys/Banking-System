@@ -1,0 +1,67 @@
+﻿@model IEnumerable<BankSoftware.Models.ProfileModel>
+
+@{
+    Layout = null; // Exclude the layout from this view
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profiles</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles can be added here */
+        .profile-card {
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem; /* Adjust the font size for the card title */
+            margin-bottom: 15px; /* Add some space below the title */
+        }
+
+        .card-text {
+            font-size: 1.2rem; /* Adjust the font size for the card text */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h2 class="mb-4 text-center">Profiles</h2>
+                <p class="text-center">
+                    <a href="@Url.Action("GetAll","UserAccount")" class="btn btn-primary">Go Back</a>
+                </p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 profile-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">@Html.DisplayFor(modelItem => item.FullName)</h5>
+                            <p class="card-text">
+                                <strong>Date of Birth:</strong> @(item.DOB.HasValue ? item.DOB.Value.ToShortDateString() : "")
+                                <br />
+                                <strong>Phone Number:</strong> @Html.DisplayFor(modelItem => item.PhoneNo)
+                                <br />
+                                <strong>Address:</strong> @Html.DisplayFor(modelItem => item.Address)
+                                <br />
+                                <strong>Occupation:</strong> @Html.DisplayFor(modelItem => item.Occupation)
+                            </p>
+                            <div class="text-center">
+       
+                                <a href="@Url.Action("Delete", new { id = item.Profile_ID })" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</body>
+</html>
